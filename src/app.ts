@@ -1,6 +1,6 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
-import { Schema, Model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const app: Application = express();
 
@@ -97,6 +97,11 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
       required: true,
     },
   });
+
+  // 3. Create a Model
+  const User = model<IUser>('User', userSchema)
+
+//   4. create a instance of User
 
   //   res.send("Welcome to mongoose");
   //   next();
