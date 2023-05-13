@@ -99,9 +99,33 @@ app.get("/", (req: Request, res: Response, next: NextFunction) => {
   });
 
   // 3. Create a Model
-  const User = model<IUser>('User', userSchema)
+  const User = model<IUser>("User", userSchema);
 
-//   4. create a instance of User
+  //   4. create a instance of User
+
+  const createUserToDB = async () => {
+    const user = new User({
+      id: "77667",
+      role: "student",
+      password: "12345678",
+
+      name: {
+        firstName: "Dipta",
+        middleName: " ",
+        lastName: "Saha",
+      },
+      gender: "male",
+      email: "diptasaha@gmail.com",
+      phone: "+8801613146412",
+      emergencyPhone: "+8801613146412",
+      presentAddress: "Dhaka",
+      permanentAddress: "Khulna",
+    });
+    await user.save();
+    console.log("User is Created");
+  };
+
+  createUserToDB();
 
   //   res.send("Welcome to mongoose");
   //   next();
